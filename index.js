@@ -1,42 +1,76 @@
-const mysql = require('mysql');
+const inquirer = require('inquirer');
+const db = require('./data');
 
-const connection = mysql.createConnection({
-  host: 'localhost',
+async function basicQuestions() {
+    const {choice} = await inquirer.prompt([
+        {
+        name: "choice",
+        type: "rawlist",
+        message: "What would you like to do?",
+        choices: [
+             "View all employees",
+        "View all employees by role",
+        "View all employees by department",
+        "View all employees by manager",
+        "Add employee",
+        "Add role",
+        "Add department",
+        "Update employee role"
+        ]
+    }]);
+        //Switch case depending on each user option
+        switch (choice) {
+        case 'View all employees':
+          return viewAllEmp();
 
-  // Your port, if not 3306
-  port: 3306,
+        case 'View all employees by role':
+           return viewAllEmpByRole();
 
-  // Your username
-  user: 'root',
+        case 'View all employees by department':
+          return viewAllEmpByDept();
 
-  // Be sure to update with your own MySQL password!
-  password: 'password',
-  database: 'employeeDB',
-});
+        case 'View all employees by manager':
+          return viewAllEmpByManager();
 
+        case 'Add employee':
+          return addEmp();
+          
+        case 'Add role':
+          return addRole();
 
-connection.connect((err) => {
-  if (err) throw err;
-  console.log(`connected as id ${connection.threadId}`);
-  //CALL FUNCTIONS HERE
-});
+        case 'Add department':
+          return addDept();
 
-// const employeeQuestions = () => {
-//     inquirer.prompt({
-//         name: "toDo",
-//         type: "rawlist",
-//         message: "What would you like to do?",
-//         choices: [
-//             'View All Employees',
-//             'View All Employees by Department',
-//             'View All Employees by Manager',
-//             'Add Employee',
-//             'Remove Employee Role',
-//             'Update Employee Role',
-//             'Update Employee Manager',
-//             'View All Roles'
-//         ]
-//     }).then((answer) => {
+        case 'Update employee role':
+          return updateEmpRole();
 
-//     })
+        default:
+          console.log(`Invalid action: ${answer.action}`);
+          break;
+    }
 }
+
+async function addDept() {
+    const department = await inquirer.prompt ([
+        {
+            name: "name",
+            message: "What is the name of the department?"
+        }
+    ])
+    await db.addDepartment(department)
+    console.log(`Added ${department.name}`)
+    basicQuestions();
+}
+
+/* Function to call above
+
+viewAllEmp();
+viewAllEmpByRole();
+viewAllEmpByDept();
+viewAllEmpByManager();
+addEmp();
+addRole();
+addDept();
+updateEmpRole();
+*/
+basicQuestions();

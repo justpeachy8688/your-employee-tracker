@@ -1,0 +1,4 @@
+--insert dept table
+--add role
+--add employees last
+--view all dept, employees
