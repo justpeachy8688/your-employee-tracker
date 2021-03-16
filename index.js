@@ -49,7 +49,7 @@ async function basicQuestions() {
           break;
     }
 }
-
+// ADD DEPARTMENT
 async function addDept() {
     const department = await inquirer.prompt ([
         {
@@ -58,7 +58,20 @@ async function addDept() {
         }
     ])
     await db.addDepartment(department)
-    console.log(`Added ${department.name}`)
+    console.log(`\n ADDED ${department.name}! \n`)
+    basicQuestions();
+}
+
+// ADD ROLE
+async function addRole() {
+    const role = await inquirer.prompt ([
+        {
+        name: "name",
+        messgae: 'What role would you like to add?'
+        }
+    ])
+    await db.addRole(role)
+    console.log(`\n ADDED ${role.name}! \n`)
     basicQuestions();
 }
 

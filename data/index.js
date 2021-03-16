@@ -22,6 +22,14 @@ class Query {
             'INSERT INTO employee SET ?', employee
         )
     }
+
+    // viewAllEmpByDept(department) {
+    //     return this.connection.query(
+    //         'SELECT * FROM department', department
+    //     )
+    // }
 }
+
+//WILL I NEED TO ADD ALL FUNCTIONS TO THIS ONE QUERY?
 
 module.exports = new Query(connection);
