@@ -28,9 +28,9 @@ class Query {
         )
     }
 
-viewAllDepts(department) {
+viewAllDepts() {
     return this.connection.query(
-        'SELECT * FROM department', department
+        'SELECT * FROM department'
     )
 }
     // viewAllEmpByDept(department) {

@@ -2,6 +2,7 @@ const inquirer = require('inquirer');
 const db = require('./data');
 let cTable = require("console.table");
 const database = require('./data/connection');
+let queries = require("./data/index.js");
 
 
 async function basicQuestions() {
@@ -27,7 +28,7 @@ async function basicQuestions() {
           return viewAllEmp();
         // case 'View all employees by role':
         //    return viewAllEmpByRole();
-        case 'View all employees by department':
+        case 'View all departments':
           return viewAllDepts();
         // case 'View all employees by manager':
         //   return viewAllEmpByManager();
