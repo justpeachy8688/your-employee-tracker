@@ -22,6 +22,11 @@ class Query {
             'INSERT INTO employee SET ?', employee
         )
     }
+    viewAllEmp(employee) {
+        return this.connection.query(
+            'SELECT * FROM employee', employee
+        )
+    }
 
     // viewAllEmpByDept(department) {
     //     return this.connection.query(
