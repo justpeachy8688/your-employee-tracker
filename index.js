@@ -1,6 +1,8 @@
 const inquirer = require('inquirer');
 const db = require('./data');
 let cTable = require("console.table");
+const database = require('./data/connection');
+
 
 async function basicQuestions() {
     const {choice} = await inquirer.prompt([
@@ -114,7 +116,7 @@ async function addEmployee() {
 async function viewAllEmp() {
     // SELECT * FROM employee;
     let query = "SELECT * FROM employee";
-    const rows = await db.query(query);
+    const rows = await database.query(query);
     console.table(rows);
 
 basicQuestions();
