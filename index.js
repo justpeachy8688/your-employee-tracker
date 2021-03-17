@@ -12,29 +12,25 @@ async function basicQuestions() {
         message: "What would you like to do?",
         choices: [
              "View all employees",
-        "View all employees by role",
-        "View all employees by department",
+        "View all departments",
         "View all employees by manager",
         "Add employee",
         "Add role",
         "Add department",
-        "Update employee role"
+        "Update employee role",
+        "View all employees by role"
         ]
     }]);
         //Switch case depending on each user option
         switch (choice) {
         case 'View all employees':
           return viewAllEmp();
-
-        case 'View all employees by role':
-           return viewAllEmpByRole();
-
+        // case 'View all employees by role':
+        //    return viewAllEmpByRole();
         case 'View all employees by department':
-          return viewAllEmpByDept();
-
-        case 'View all employees by manager':
-          return viewAllEmpByManager();
-
+          return viewAllDepts();
+        // case 'View all employees by manager':
+        //   return viewAllEmpByManager();
         case 'Add employee':
           return addEmployee();
           
@@ -46,10 +42,6 @@ async function basicQuestions() {
 
         case 'Update employee role':
           return updateEmpRole();
-
-        default:
-          console.log(`Invalid action: ${answer.action}`);
-          break;
     }
 }
 // ADD DEPARTMENT
@@ -121,6 +113,25 @@ async function viewAllEmp() {
 
 basicQuestions();
 }
+
+//VIEW ALL DEPARTMENTS
+async function viewAllDepts() {
+    let query = "SELECT * FROM department";
+    const rows = await database.query(query);
+    console.table(rows);
+
+    basicQuestions();
+}
+
+// //VIEW ALL EMPLOPYEES BY ROLE
+// async function viewAllEmpByRole() {
+//     const empByRole = await inquirer.prompt ([
+//         {
+//             name: "role",
+//             message: "Which role"
+//         }
+//     ])
+// }
 /* Function to call above
 
 viewAllEmp();

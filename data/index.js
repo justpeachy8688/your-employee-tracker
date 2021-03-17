@@ -28,6 +28,11 @@ class Query {
         )
     }
 
+viewAllDepts(department) {
+    return this.connection.query(
+        'SELECT * FROM department', department
+    )
+}
     // viewAllEmpByDept(department) {
     //     return this.connection.query(
     //         'SELECT * FROM department', department
