@@ -33,6 +33,13 @@ viewAllDepts() {
         'SELECT * FROM department'
     )
 }
+
+viewAllRoles() {
+    return this.connection.query(
+        'SELECT * FROM role'
+    )
+}
+
     // viewAllEmpByDept(department) {
     //     return this.connection.query(
     //         'SELECT * FROM department', department
