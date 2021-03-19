@@ -133,47 +133,50 @@ async function viewAllRoles() {
     basicQuestions();
 }
 
-//UPDATE EMPLOYEE ROLE
-async function updateEmpRole() {
-    const employees = await database.query('SELECT id, CONCAT(first_name, " ", last_name AS name FROM employee');
+//STILL WORKING ON THE LAST FUNCTION
 
-    const employeeChoices = employees.map(employee => ({
-        name: `${employee.first_name} ${employee.last_name}`,
-        value: employee.id
-    }));
+// //UPDATE EMPLOYEE ROLE
+// async function updateEmpRole() {
+//     const employees = await database.query('SELECT id, CONCAT(first_name, " ", last_name AS name FROM employee');
 
-    inquirer.prompt([
-        {
-            name: "empID",
-            type: "list",
-            message: "For which employee?",
-            choices: employeeChoices
-        }
-    ])
-    // .then(empAnswers => {
+//     const employeeChoices = employees.map(employee => ({
+//         name: `${employee.first_name} ${employee.last_name}`,
+//         value: employee.id
+//     }));
 
-    // })
+//     inquirer.prompt([
+//         {
+//             name: "empID",
+//             type: "list",
+//             message: "For which employee?",
+//             choices: employeeChoices
+//         }
+//     ])
+//     // .then(empAnswers => {
 
-    const roles = await database.query('SELECT id, CONCAT(title , salary, department_id AS title FROM role');
+//     // })
 
-    const roleChoices = roles.map(role => ({
-        name: `${role.title} ${role.salary}`,
-        value: role.id
-    }));
+//     const roles = await database.query('SELECT id, CONCAT(title , salary, department_id AS title FROM role');
 
-    inquirer.prompt([
-        {
-            name: "newRole",
-            type: "list",
-            message: "Change their role to:",
-            choices: roleChoices
-        }
-    ])
+//     const roleChoices = roles.map(role => ({
+//         name: `${role.title} ${role.salary}`,
+//         value: role.id
+//     }));
 
-    // .then(answers => {
+//     inquirer.prompt([
+//         {
+//             name: "newRole",
+//             type: "list",
+//             message: "Change their role to:",
+//             choices: roleChoices
+//         }
+//     ])
 
-    //     })
-}
+//     // .then(answers => {
+
+//     //     })
+
+// }
 
 
 basicQuestions();
